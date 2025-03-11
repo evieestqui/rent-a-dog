@@ -1,0 +1,8 @@
+<h1>Browse Dogs</h1>
+<% @dogs.each do |dog| %>
+  <div>
+    <h2><%= link_to dog.name, dog_path(dog) %></h2>
+    <p>Size: <%= dog.size %></p>
+    <p>Location: <%= dog.address %></p>
+  </div>
+<% end %>

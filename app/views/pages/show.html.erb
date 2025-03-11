@@ -1,0 +1,14 @@
+<h1><%= @dog.name %></h1>
+<p>Address: <%= @dog.address %></p>
+<p>Size: <%= @dog.size %></p>
+<p>Latitude: <%= @dog.latitude %>, Longitude: <%= @dog.longitude %></p>
+
+<%= form_with url: dog_bookings_path(@dog), method: :post do |f| %>
+  <%= f.label :start_date %>
+  <%= f.date_field :start_date %>
+
+  <%= f.label :end_date %>
+  <%= f.date_field :end_date %>
+
+  <%= f.submit "Book this dog!", class: "btn btn-success" %>
+<% end %>
