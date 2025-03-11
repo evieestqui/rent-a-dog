@@ -1,14 +1,16 @@
 class BookingsController < ApplicationController
+  before_action :set_dog, only: :create
   before_action :set_booking, only: [:accept, :decline]
 
   def create
-    @dog = Dog.find(params[:dog_id])
-    @booking = @dog.bookings.build(user: current_user, start_date: params[:start_date], end_date: params[:end_date], status: "pending")
+    @booking = Booking.new(booking_params)
+    @booking.user = current_user
+    @booking.dog = @dog
 
     if @booking.save
       redirect_to dashboard_path, notice: "Booking request sent!"
     else
-      redirect_to @dog, alert: "Error in booking."
+      render "dogs/show", status: :unprocessable_entity
     end
   end
 
@@ -24,7 +26,15 @@ class BookingsController < ApplicationController
 
   private
 
+  def set_dog
+    @dog = Dog.find(params[:dog_id])
+  end
+
   def set_booking
     @booking = Booking.find(params[:id])
+  end
+
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date)
   end
 end

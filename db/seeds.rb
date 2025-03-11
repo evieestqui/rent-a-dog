@@ -36,7 +36,7 @@ puts "Creating dog..."
   Dog.create!(
     name: Faker::Creature::Dog.name,
     address: Faker::Locations::Australia.location,
-    breed: Faker::Creature::Dog.breedd
+    breed: Faker::Creature::Dog.breed,
     size: Faker::Creature::Dog.size,
     user: User.first
   )

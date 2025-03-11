@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   # get "/dashboard", to: "pages#dashboard"
 
-  resources :dogs, only: :index # do
-  #   resources :bookings, only: [:create]
-  # end
+  resources :dogs, only: [:index, :show] do
+    resources :bookings, only: [:create]
+  end
 
 
     # resources :bookings, only: [] do
