@@ -1,15 +1,25 @@
 <div class="container">
-  <h1 class="text-center">Pick your Doggo</h1>
+  <div class='row'>
+    <div class='col-6'>
+      <h1 class="text-center">Pick your Doggo</h1>
 
-  <% @dogs.each do |dog| %>
-    <div class="card-product my-2">
-      <img src="https://images.unsplash.com/photo-1590419690008-905895e8fe0d?q=80&w=2672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-      <div class="card-product-infos">
-        <%= link_to dog.name, dog_path(dog) %>
-        <p>Size: <%= dog.size %></p>
-        <p>Location: <%= dog.address %></p>
-        <p>Cute doogo awaits you<strong>to walk and Woof Woof</strong>.</p>
-      </div>
+      <% @dogs.each do |dog| %>
+        <div class="card-product my-2">
+          <%= cl_image_tag dog.image.key %>
+          <div class="card-product-infos">
+            <%= link_to dog.name, dog_path(dog) %>
+            <p>Size: <%= dog.size %></p>
+            <p>Location: <%= dog.address %></p>
+            <p>Cute doogo awaits you<strong>to walk and Woof Woof</strong>.</p>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class='col-6' style='min-height: 100vh'>
+      <div style="width: 100%; height: 600px; position: sticky; top: 0px"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
+  </div>
 </div>
