@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col text-center">
+      <div class="bg-white rounded-lg shadow p-5">
+        <img src="https://images.unsplash.com/photo-1590419690008-905895e8fe0d?q=80&w=600"
+             height="300" width="300" class="rounded-circle object-fit-cover" alt="dog">
+        <div class="py-3">
+          <h2><%= @booking.dog.name %></h2>
+          <div>Address: <%= @booking.dog.address %></div>
+          <div>Size: <%= @booking.dog.size %></div>
+          <div>Breed: <%= @booking.dog.breed %></div>
+          <p><strong>Your booking request is pending confirmation.</strong></p>
+          <p>Start Date: <strong><%= @booking.start_date %></strong></p>
+          <p>End Date: <strong><%= @booking.end_date %></strong></p>
+          <p>End Date: <strong><%= @booking.end_date %></strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="bg-white rounded-lg shadow p-5 text-center">
+        <h3>Confirm Your Booking</h3>
+        <p>Click below to finalize your request.</p>
+        <%= button_to "Confirm Booking", dashboard_path, method: :get, class: "btn btn-primary mt-3" %>
+      </div>
+    </div>
+  </div>
+</div>

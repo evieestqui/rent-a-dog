@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_12_151601) do
     t.date "end_date"
     t.bigint "dog_id", null: false
     t.bigint "user_id", null: false
-    t.string "status"
+    t.string "status", default: "pending", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dog_id"], name: "index_bookings_on_dog_id"

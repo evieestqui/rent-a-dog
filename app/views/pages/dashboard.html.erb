@@ -1,0 +1,68 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">My bookings (as a dogwalker)</h1>
+    </div>
+  </div>
+</section>
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+       <% @bookings_as_client.each do |booking| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <%= cl_image_tag booking.dog.image.key, height: 225, width: "100%", class: 'card-img-top object-fit-cover object-position-center', alt: "dog" %>
+            <div class="card-body">
+              <p class="card-text">
+                <div>Start date: <strong><%= booking.start_date %></strong></div>
+                <div>End date: <strong><%= booking.end_date %></strong></div>
+              </p>
+              <small class="text-body-secondary"><%= booking.status %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">My bookings (as a doggo owner)</h1>
+    </div>
+  </div>
+</section>
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+       <% @bookings_as_owner.each do |booking| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <%= cl_image_tag booking.dog.image.key, height: 225, width: "100%", class: 'card-img-top object-fit-cover object-position-center', alt: "dog" %>
+            <div class="card-body">
+              <p class="card-text">
+                <div>Start date: <strong><%= booking.start_date %></strong></div>
+                <div>End date: <strong><%= booking.end_date %></strong></div>
+              </p>
+
+             <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <% if booking.pending? %>
+                    <%= link_to 'Accept', accept_booking_path(booking), data: { turbo_method: :patch }, class: 'btn btn-sm btn-outline-secondary'  %>
+                    <%= link_to 'Decline', decline_booking_path(booking), data: { turbo_method: :patch }, class: 'btn btn-sm btn-outline-secondary' %>
+ https://urbanlinker.com/fr/jobs/marketing                <% end %>
+                </div>
+                <small class="text-body-secondary"><%= booking.status %></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

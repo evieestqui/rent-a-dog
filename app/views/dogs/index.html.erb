@@ -1,4 +1,20 @@
 <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-8 my-3">
+        <%= form_with url: dogs_path, method: :get, class: "d-flex" do %>
+          <div data-controller='address-autocomplete' data-address-autocomplete-placeholder-value='<%= params[:location] %>' data-address-autocomplete-api-key-value='<%= ENV['MAPBOX_API_KEY']%>'>
+            <%= text_field_tag :location,
+                  params[:location],
+                  data: { address_autocomplete_target: 'address' },
+                  class: "form-control d-none",
+                  placeholder: "Type a keyword"
+              %>
+          </div>
+          <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+
   <div class='row'>
     <div class='col-6'>
       <h1 class="text-center">Pick your Doggo</h1>

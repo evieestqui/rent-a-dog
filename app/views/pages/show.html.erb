@@ -1,14 +1,19 @@
-<h1><%= @dog.name %></h1>
-<p>Address: <%= @dog.address %></p>
-<p>Size: <%= @dog.size %></p>
-<p>Latitude: <%= @dog.latitude %>, Longitude: <%= @dog.longitude %></p>
+<h2>My bookings</h2>
+<div class="card-product">
+  <% if @dog && @dog.image %>
+    <%= cl_image_tag @dog.image.key, height: 300, width: 300, class: 'rounded-circle object-fit-cover', alt: "dog" %>
+  <% else %>
+    <p>No dog image available.</p>
+  <% end %>
 
-<%= form_with url: dog_bookings_path(@dog), method: :post do |f| %>
-  <%= f.label :start_date %>
-  <%= f.date_field :start_date %>
+  <div class="card-product-infos">
+    <h2>Product name</h2>
+    <p>Product description with <strong>relevant info</strong> only.</p>
 
-  <%= f.label :end_date %>
-  <%= f.date_field :end_date %>
-
-  <%= f.submit "Book this dog!", class: "btn btn-success" %>
-<% end %>
+    <% @my_bookings.each do |booking| %>
+      <div>
+        <%= booking.start_date %> - <%= booking.end_date %>
+      </div>
+    <% end %>
+  </div>
+</div>

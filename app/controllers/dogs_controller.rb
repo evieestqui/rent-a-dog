@@ -2,7 +2,12 @@ class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update]
 
   def index
-    @dogs = Dog.all
+    if params[:location].present?
+      @dogs = Dog.near(params[:location], 1)
+    else
+      @dogs = Dog.all
+    end
+
     @markers = @dogs.geocoded.map do |dog|
       {
         lat: dog.latitude,

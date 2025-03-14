@@ -1,11 +1,12 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :home
+
   def home
    @dogs = Dog.all
   end
 
   def dashboard
-    @my_dogs = current_user.dogs
-    @received_bookings = Booking.joins(:dog).where(dogs: { user: current_user })
-    @my_bookings = current_user.bookings
+    @bookings_as_client = current_user.bookings
+    @bookings_as_owner = Booking.joins(:dog).where(dogs: { user: current_user })
   end
 end
