@@ -54,7 +54,7 @@
                   <% if booking.pending? %>
                     <%= link_to 'Accept', accept_booking_path(booking), data: { turbo_method: :patch }, class: 'btn btn-sm btn-outline-secondary'  %>
                     <%= link_to 'Decline', decline_booking_path(booking), data: { turbo_method: :patch }, class: 'btn btn-sm btn-outline-secondary' %>
- https://urbanlinker.com/fr/jobs/marketing                <% end %>
+                      <% end %>
                 </div>
                 <small class="text-body-secondary"><%= booking.status %></small>
               </div>
